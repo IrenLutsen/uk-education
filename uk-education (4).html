@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Освіта у Великобританії · Pro Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:#012169; --navy2:#1a3a6b; --navy3:#0d2d5e;
+      --red:#C8102E; --red2:#a50d25;
+      --white:#ffffff; --cream:#f7f5f0; --cream2:#efecea;
+      --gold:#c9a84c; --gold2:#e8d5a3;
+      --text:#1a1a2e; --muted:#5a6278; --mid:#3d4566;
+      --border:#d6d3cc; --radius:14px;
+      --font:'Cormorant Garamond',serif;
+      --sans:'DM Sans',sans-serif;
+      --mono:'Courier New',monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--cream);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+
+    /* NAV */
+    nav{background:var(--navy);display:flex;justify-content:space-between;align-items:center;padding:0 2rem;height:60px;position:sticky;top:0;z-index:99;box-shadow:0 2px 12px rgba(1,33,105,.18)}
+    .nav-logo{display:flex;align-items:center;gap:10px}
+    .nav-flag{display:flex;flex-direction:column;width:28px;height:18px;border-radius:3px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+    .flag-top,.flag-bottom{flex:1;background:var(--navy)}
+    .flag-cross{height:4px;background:var(--white)}
+    .nav-brand{font-family:var(--font);font-size:1.1rem;font-weight:600;color:var(--white);letter-spacing:.02em}
+    .nav-links{display:flex;gap:1.6rem;align-items:center}
+    .nav-links a{font-size:.8rem;letter-spacing:.08em;color:rgba(255,255,255,.65);text-transform:uppercase;font-family:var(--sans);transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--white)}
+    .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:.4rem 1rem;border-radius:20px;font-weight:500!important}
+    .nav-cta:hover{background:var(--red2)!important}
+
+    /* STRIP */
+    .uk-strip{height:5px;background:linear-gradient(90deg,var(--navy) 0%,var(--red) 25%,var(--white) 50%,var(--red) 75%,var(--navy) 100%)}
+
+    /* HERO */
+    .hero{background:var(--navy);padding:4.5rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 20%,rgba(200,16,46,.12) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 85% 80%,rgba(201,168,76,.08) 0%,transparent 60%);pointer-events:none}
+    .hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .hero-eyebrow{font-size:.72rem;letter-spacing:.22em;color:var(--gold2);text-transform:uppercase;font-family:var(--mono);margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+    .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:30px;height:1px;background:rgba(232,213,163,.3)}
+    .hero h1{font-family:var(--font);font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:600;line-height:1.15;color:var(--white);margin-bottom:1.2rem}
+    .hero h1 em{font-style:italic;color:var(--gold2)}
+    .hero-sub{font-size:1rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 2.4rem;font-weight:300}
+    .badge-row{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-bottom:2.4rem}
+    .badge{font-size:.72rem;font-family:var(--mono);letter-spacing:.06em;color:var(--gold2);border:1px solid rgba(232,213,163,.3);padding:.3rem .9rem;border-radius:40px;background:rgba(232,213,163,.06)}
+    .btn-group{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.8rem 1.8rem;border-radius:50px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono);cursor:pointer;transition:all .2s;text-decoration:none;border:none}
+    .btn-primary{background:var(--red);color:var(--white);box-shadow:0 4px 16px rgba(200,16,46,.35)}
+    .btn-primary:hover{background:var(--red2);transform:translateY(-1px)}
+    .btn-outline{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2)}
+    .btn-outline:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
+    .btn-quiz{background:var(--gold);color:var(--navy);box-shadow:0 4px 16px rgba(201,168,76,.3)}
+    .btn-quiz:hover{background:var(--gold2);transform:translateY(-1px)}
+
+    /* DIVIDER */
+    .divider{display:flex;align-items:center;gap:1rem;max-width:720px;margin:0 auto 3rem;padding:3rem 2rem 0}
+    .divider span{font-size:.7rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;white-space:nowrap;font-family:var(--mono)}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+    /* SECTIONS */
+    section{max-width:720px;margin:0 auto;padding:0 2rem 4rem}
+
+    /* WHO */
+    .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .who-card{background:var(--white);padding:1.5rem;transition:background .2s}
+    .who-card:hover{background:var(--cream)}
+    .who-icon{font-size:1.4rem;margin-bottom:.7rem}
+    .who-title{font-size:.95rem;font-weight:500;color:var(--navy);margin-bottom:.4rem}
+    .who-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+    /* STEPS */
+    .steps{display:flex;flex-direction:column}
+    .step{display:flex;gap:1.4rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+    .step:last-child{border-bottom:none}
+    .step-num{font-family:var(--mono);font-size:.7rem;color:var(--red);letter-spacing:.08em;min-width:26px;padding-top:.22rem;font-weight:500}
+    .step-title{font-size:.98rem;font-weight:500;color:var(--navy);margin-bottom:.3rem}
+    .step-desc{font-size:.84rem;color:var(--muted);line-height:1.65}
+
+    /* GET LIST */
+    .get-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+    .get-list li{display:flex;gap:.85rem;align-items:flex-start;font-size:.95rem;color:var(--mid)}
+    .get-list li::before{content:'✦';color:var(--red);font-size:.55rem;margin-top:.48rem;flex-shrink:0}
+
+    /* UNI GRID — 4 cards */
+    .uni-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+    .uni-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;transition:all .2s;border-top:3px solid var(--navy)}
+    .uni-card:hover{box-shadow:0 6px 24px rgba(1,33,105,.1);transform:translateY(-2px)}
+    .uni-tag{font-size:.68rem;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;font-weight:500}
+    .uni-title{font-size:.95rem;font-weight:500;color:var(--navy);margin-bottom:.4rem}
+    .uni-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+    /* SF BLOCK */
+    .sf-box{background:var(--navy);border-radius:var(--radius);padding:2rem;color:var(--white)}
+    .sf-box h3{font-family:var(--font);font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:.7rem}
+    .sf-box p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:1.5rem;font-weight:300}
+    .sf-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+    .sf-num{background:rgba(255,255,255,.06);padding:1.1rem;text-align:center}
+    .sf-num-val{font-family:var(--font);font-size:1.8rem;font-weight:600;color:var(--gold2);line-height:1;margin-bottom:.35rem}
+    .sf-num-label{font-size:.72rem;color:rgba(255,255,255,.5);font-family:var(--mono);letter-spacing:.05em}
+
+    /* FAQ */
+    .faq{display:flex;flex-direction:column}
+    details{border-bottom:1px solid var(--border)}
+    details:first-child{border-top:1px solid var(--border)}
+    summary{cursor:pointer;padding:1.1rem 0;font-size:.94rem;font-weight:500;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;user-select:none;font-family:var(--sans)}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:'+';font-size:1.2rem;color:var(--red);flex-shrink:0;transition:transform .2s;font-family:var(--mono);font-weight:300}
+    details[open] summary::after{transform:rotate(45deg)}
+    .faq-body{padding:0 0 1.2rem;font-size:.87rem;color:var(--muted);line-height:1.75}
+    .faq-body strong{color:var(--navy);font-weight:500}
+
+    /* ── QUIZ ── */
+    .quiz-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 24px rgba(1,33,105,.08)}
+    .quiz-header{background:var(--navy);padding:1.1rem 1.4rem;display:flex;align-items:center;gap:10px}
+    .quiz-header-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--red));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+    .quiz-header-info{}
+    .quiz-header-name{font-size:.88rem;font-weight:500;color:var(--white)}
+    .quiz-header-sub{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:1px}
+
+    .quiz-body{padding:1.6rem 1.4rem}
+    .quiz-progress{display:flex;gap:4px;margin-bottom:1.4rem}
+    .quiz-prog-step{flex:1;height:3px;background:var(--cream2);border-radius:2px;transition:background .3s}
+    .quiz-prog-step.done{background:var(--red)}
+    .quiz-prog-step.active{background:var(--navy)}
+
+    .quiz-screen{display:none;animation:fadeUp .3s ease}
+    .quiz-screen.active{display:block}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .quiz-q{font-family:var(--font);font-size:1.25rem;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:.4rem}
+    .quiz-hint{font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
+
+    .quiz-options{display:flex;flex-direction:column;gap:.55rem}
+    .quiz-opt{display:flex;align-items:center;gap:.85rem;padding:.85rem 1rem;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .18s;font-size:.9rem;color:var(--text);font-family:var(--sans)}
+    .quiz-opt:hover{border-color:var(--navy);background:var(--cream2)}
+    .quiz-opt.selected{border-color:var(--navy);background:#e8edf7;color:var(--navy)}
+    .quiz-opt-icon{font-size:1.1rem;flex-shrink:0}
+
+    .quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+
+    .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;gap:.75rem}
+    .quiz-back{background:none;border:1.5px solid var(--border);border-radius:8px;padding:.6rem 1.1rem;font-size:.82rem;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .18s}
+    .quiz-back:hover{border-color:var(--navy);color:var(--navy)}
+    .quiz-next{background:var(--navy);color:var(--white);border:none;border-radius:8px;padding:.65rem 1.4rem;font-size:.85rem;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s;margin-left:auto}
+    .quiz-next:hover{background:var(--navy2)}
+    .quiz-next:disabled{background:var(--border);cursor:not-allowed}
+    .quiz-step-label{font-size:.72rem;color:var(--muted);font-family:var(--mono)}
+
+    /* Result screen */
+    .quiz-result{text-align:center;padding:.5rem 0}
+    .result-icon{font-size:2.4rem;margin-bottom:.75rem}
+    .result-title{font-family:var(--font);font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;line-height:1.25}
+    .result-sub{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
+    .result-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:1.4rem}
+    .result-tag{font-size:.75rem;font-family:var(--mono);padding:.3rem .85rem;border-radius:20px;background:#e8edf7;color:var(--navy);border:1px solid rgba(1,33,105,.15)}
+    .result-wa{display:flex;flex-direction:column;gap:.6rem;max-width:340px;margin:0 auto}
+    .btn-wa{display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.9rem 1.6rem;background:var(--red);color:var(--white);border-radius:50px;font-size:.85rem;font-weight:500;font-family:var(--sans);text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(200,16,46,.3)}
+    .btn-wa:hover{background:var(--red2);transform:translateY(-1px)}
+    .btn-restart{background:none;border:1.5px solid var(--border);border-radius:50px;padding:.7rem 1.4rem;font-size:.82rem;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .2s;width:100%}
+    .btn-restart:hover{border-color:var(--navy);color:var(--navy)}
+
+    /* CTA */
+    .cta-section{background:var(--navy);text-align:center;padding:4.5rem 2rem 5rem;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(200,16,46,.12) 0%,transparent 70%);pointer-events:none}
+    .cta-inner{position:relative;z-index:1;max-width:560px;margin:0 auto}
+    .cta-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-family:var(--mono);margin-bottom:1.2rem}
+    .cta-section h2{font-family:var(--font);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:600;color:var(--white);margin-bottom:.9rem;line-height:1.25}
+    .cta-inner>p{font-size:.9rem;color:rgba(255,255,255,.55);margin-bottom:2rem;font-weight:300}
+
+    /* FOOTER */
+    footer{background:var(--navy3);padding:1.6rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+    footer span{font-size:.75rem;color:rgba(255,255,255,.38);font-family:var(--mono)}
+    .footer-links{display:flex;gap:1.4rem}
+    .footer-links a{font-size:.75rem;color:rgba(255,255,255,.45);transition:color .2s}
+    .footer-links a:hover{color:rgba(255,255,255,.85)}
+
+    @media(max-width:520px){
+      nav{padding:0 1.2rem}
+      .nav-brand{font-size:.95rem}
+      .nav-links{gap:.8rem}
+      .hero{padding:3.5rem 1.2rem 4rem}
+      section{padding:0 1.2rem 3rem}
+      .divider{padding:2rem 1.2rem 0}
+      .cta-section{padding:3.5rem 1.2rem 4rem}
+      footer{padding:1.3rem 1.2rem}
+      .quiz-grid{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;transform:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-flag"><div class="flag-top"></div><div class="flag-cross"></div><div class="flag-bottom"></div></div>
+    <span class="nav-brand">Pro Education UK</span>
+  </div>
+  <div class="nav-links">
+    <a href="https://irenlutsen.github.io/Career-couch/" target="_blank">Коучинг</a>
+    <a href="uk-education.html" class="active">Освіта UK</a>
+    <a href="https://wa.me/380683521151" target="_blank" class="nav-cta">Консультація</a>
+  </div>
+</nav>
+<div class="uk-strip"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Безкоштовна послуга для українців</p>
+    <h1>Вступ до університету<br>у <em>Великобританії</em></h1>
+    <p class="hero-sub">Допомагаємо від підбору університету до зарахування. Спеціально для українців за схемою Homes for Ukraine.</p>
+    <div class="badge-row">
+      <span class="badge">Безкоштовно для вас</span>
+      <span class="badge">Student Finance доступний</span>
+      <span class="badge">Лондон · Манчестер · Бірмінгем</span>
+    </div>
+    <div class="btn-group">
+      <a href="https://wa.me/380683521151" target="_blank" class="btn btn-primary">Безкоштовна консультація →</a>
+      <button class="btn btn-quiz" onclick="scrollToQuiz()">📋 Підібрати університет</button>
+      <a href="#faq" class="btn btn-outline">FAQ</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOR WHO -->
+<div class="divider"><span>Для кого</span></div>
+<section>
+  <div class="who-grid">
+    <div class="who-card"><div class="who-icon">🇺🇦</div><div class="who-title">Українці в UK</div><div class="who-desc">За схемою Homes for Ukraine — маєте право навчатись як місцеві студенти та отримати Student Finance.</div></div>
+    <div class="who-card"><div class="who-icon">💼</div><div class="who-title">Ті, хто працює</div><div class="who-desc">Є вечірні, денні та вихідні формати — можна поєднувати з роботою.</div></div>
+    <div class="who-card"><div class="who-icon">📄</div><div class="who-title">З різними документами</div><div class="who-desc">Атестат, диплом або тільки досвід роботи — для кожної ситуації є варіант.</div></div>
+    <div class="who-card"><div class="who-icon">🎯</div><div class="who-title">З будь-якою метою</div><div class="who-desc">Кар'єрна зміна, підвищення кваліфікації, новий старт — допоможемо знайти напрям і університет.</div></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<div class="divider"><span>Як це працює</span></div>
+<section>
+  <div class="steps">
+    <div class="step"><span class="step-num">01</span><div class="step-body"><div class="step-title">Безкоштовна консультація — 30 хвилин</div><div class="step-desc">Розповідаєте про свою ситуацію: вік, освіта, досвід роботи, місто, побажання. Разом визначаємо реальні варіанти вступу.</div></div></div>
+    <div class="step"><span class="step-num">02</span><div class="step-body"><div class="step-title">Підбір університету</div><div class="step-desc">Пропонуємо 2–3 варіанти під вашу ситуацію — з урахуванням міста, формату, рейтингу та вимог до документів.</div></div></div>
+    <div class="step"><span class="step-num">03</span><div class="step-body"><div class="step-title">Допомога з документами</div><div class="step-desc">Разом готуємо Personal Statement, CV, переклад документів. Підготовка до інтерв'ю з університетом.</div></div></div>
+    <div class="step"><span class="step-num">04</span><div class="step-body"><div class="step-title">Подача заявки</div><div class="step-desc">Подаємо заявку через офіційний портал партнера. Відстежуємо статус і комунікуємо з університетом.</div></div></div>
+    <div class="step"><span class="step-num">05</span><div class="step-body"><div class="step-title">Offer і Student Finance</div><div class="step-desc">Після офферу допомагаємо підтвердити вступ і подати заявку на студентське фінансування. Ви починаєте навчання.</div></div></div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<div class="divider"><span>Що ви отримуєте</span></div>
+<section>
+  <ul class="get-list">
+    <li>Підбір університету і програми під вашу ситуацію — безкоштовно</li>
+    <li>Допомога з документами: переклад, Personal Statement, CV</li>
+    <li>Підготовка до інтерв'ю з приймальною комісією</li>
+    <li>Подача заявки через офіційний портал агенції</li>
+    <li>Консультація щодо Student Finance — хто має право і як подавати</li>
+    <li>Підтримка від першого дзвінка до зарахування</li>
+    <li>Швидкий зв'язок через WhatsApp — відповідаємо протягом дня</li>
+  </ul>
+</section>
+
+<!-- UNI TYPES + SF inline -->
+<div class="divider"><span>Варіанти навчання</span></div>
+<section>
+  <div class="uni-grid">
+    <div class="uni-card">
+      <div class="uni-tag">Гнучкий графік</div>
+      <div class="uni-title">Вечірні та вихідні</div>
+      <div class="uni-desc">QA Higher Education: London Metropolitan, Solent, Ulster, Arden. Ідеально для тих, хто працює.</div>
+    </div>
+    <div class="uni-card" style="background:var(--navy);border-top-color:var(--gold)">
+      <div class="uni-tag" style="color:var(--gold2)">Student Finance</div>
+      <div class="uni-title" style="color:var(--white)">Держава оплачує навчання</div>
+      <div class="uni-desc" style="color:rgba(255,255,255,.6)">До <strong style="color:var(--gold2)">£9,250</strong> на навчання + до <strong style="color:var(--gold2)">£13,000+</strong> на проживання щороку. Повертати після £25k/рік доходу.</div>
+    </div>
+    <div class="uni-card" style="border-top-color:var(--red)">
+      <div class="uni-tag">Легкий вступ</div>
+      <div class="uni-title">Для складних кейсів</div>
+      <div class="uni-desc">ICON College, LCCA, CECOS — менше вимог до документів, внутрішній тест з англійської.</div>
+    </div>
+    <div class="uni-card">
+      <div class="uni-tag">Повноцінний campus</div>
+      <div class="uni-title">З гуртожитком</div>
+      <div class="uni-desc">Navitas & Oxford International: Hertfordshire, Brunel, Plymouth, Greenwich, Bradford.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<div class="divider" id="quiz-anchor"><span>Підбір університету</span></div>
+<section id="quiz-section">
+  <div class="quiz-wrap">
+    <div class="quiz-header">
+      <div class="quiz-header-icon">📋</div>
+      <div class="quiz-header-info">
+        <div class="quiz-header-name">Підберіть університет за 2 хвилини</div>
+        <div class="quiz-header-sub">8 питань → персональна рекомендація → WhatsApp з готовим запитом</div>
+      </div>
+    </div>
+    <div class="quiz-body">
+      <!-- progress -->
+      <div class="quiz-progress" id="quiz-progress"></div>
+
+      <!-- SCREEN 1: age -->
+      <div class="quiz-screen active" id="qs-1">
+        <div class="quiz-q">Скільки вам років?</div>
+        <div class="quiz-hint">Це впливає на вимоги до вступу</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'age','under21')"><span class="quiz-opt-icon">🧑</span>До 21 року</div>
+          <div class="quiz-opt" onclick="pick(this,'age','21-30')"><span class="quiz-opt-icon">👤</span>21–30 років</div>
+          <div class="quiz-opt" onclick="pick(this,'age','30plus')"><span class="quiz-opt-icon">👔</span>Понад 30 років</div>
+        </div>
+        <div class="quiz-nav"><span class="quiz-step-label">1 / 8</span><button class="quiz-next" onclick="next(1)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 2: education -->
+      <div class="quiz-screen" id="qs-2">
+        <div class="quiz-q">Яка у вас освіта?</div>
+        <div class="quiz-hint">Оберіть найвищий рівень</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'edu','school')"><span class="quiz-opt-icon">🏫</span>Шкільний атестат (11 класів)</div>
+          <div class="quiz-opt" onclick="pick(this,'edu','college')"><span class="quiz-opt-icon">🎒</span>Технікум / коледж</div>
+          <div class="quiz-opt" onclick="pick(this,'edu','bachelor')"><span class="quiz-opt-icon">🎓</span>Диплом бакалавра</div>
+          <div class="quiz-opt" onclick="pick(this,'edu','master')"><span class="quiz-opt-icon">📜</span>Диплом магістра / спеціаліста</div>
+          <div class="quiz-opt" onclick="pick(this,'edu','none')"><span class="quiz-opt-icon">💼</span>Немає документів про освіту — тільки досвід роботи</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(2)">← Назад</button><span class="quiz-step-label">2 / 8</span><button class="quiz-next" onclick="next(2)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 3: city -->
+      <div class="quiz-screen" id="qs-3">
+        <div class="quiz-q">У якому місті ви живете?</div>
+        <div class="quiz-hint">Або де готові навчатись</div>
+        <div class="quiz-grid">
+          <div class="quiz-opt" onclick="pick(this,'city','london')"><span class="quiz-opt-icon">🏙️</span>Лондон</div>
+          <div class="quiz-opt" onclick="pick(this,'city','manchester')"><span class="quiz-opt-icon">🐝</span>Манчестер</div>
+          <div class="quiz-opt" onclick="pick(this,'city','birmingham')"><span class="quiz-opt-icon">🏭</span>Бірмінгем</div>
+          <div class="quiz-opt" onclick="pick(this,'city','other_uk')"><span class="quiz-opt-icon">🗺️</span>Інше місто UK</div>
+          <div class="quiz-opt" onclick="pick(this,'city','relocate')"><span class="quiz-opt-icon">📦</span>Готовий переїхати</div>
+          <div class="quiz-opt" onclick="pick(this,'city','ukraine')"><span class="quiz-opt-icon">🇺🇦</span>Ще в Україні</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(3)">← Назад</button><span class="quiz-step-label">3 / 8</span><button class="quiz-next" onclick="next(3)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 4: schedule -->
+      <div class="quiz-screen" id="qs-4">
+        <div class="quiz-q">Який формат навчання вам підходить?</div>
+        <div class="quiz-hint">Враховуйте вашу зайнятість</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'schedule','evening')"><span class="quiz-opt-icon">🌙</span>Вечірній — 2 вечори на тиждень після роботи</div>
+          <div class="quiz-opt" onclick="pick(this,'schedule','weekend')"><span class="quiz-opt-icon">📅</span>Вихідні — субота та/або неділя</div>
+          <div class="quiz-opt" onclick="pick(this,'schedule','daytime')"><span class="quiz-opt-icon">☀️</span>Денний — 2-3 дні на тиждень</div>
+          <div class="quiz-opt" onclick="pick(this,'schedule','fulltime')"><span class="quiz-opt-icon">🏛️</span>Повний день — класичне студентське життя</div>
+          <div class="quiz-opt" onclick="pick(this,'schedule','any')"><span class="quiz-opt-icon">🔄</span>Будь-який — головне вступити</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(4)">← Назад</button><span class="quiz-step-label">4 / 8</span><button class="quiz-next" onclick="next(4)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 5: faculty -->
+      <div class="quiz-screen" id="qs-5">
+        <div class="quiz-q">Який напрям вас цікавить?</div>
+        <div class="quiz-hint">Оберіть один або найближчий до вашої мети</div>
+        <div class="quiz-grid">
+          <div class="quiz-opt" onclick="pick(this,'faculty','business')"><span class="quiz-opt-icon">💼</span>Бізнес / Менеджмент</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','finance')"><span class="quiz-opt-icon">💰</span>Фінанси / Бухоблік</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','it')"><span class="quiz-opt-icon">💻</span>IT / Комп'ютерні науки</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','health')"><span class="quiz-opt-icon">🏥</span>Охорона здоров'я / Nursing</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','law')"><span class="quiz-opt-icon">⚖️</span>Право / Юриспруденція</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','psychology')"><span class="quiz-opt-icon">🧠</span>Психологія</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','marketing')"><span class="quiz-opt-icon">📣</span>Маркетинг / Реклама</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','design')"><span class="quiz-opt-icon">🎨</span>Дизайн / Творчі спеціальності</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','hospitality')"><span class="quiz-opt-icon">🏨</span>Готельний бізнес / Туризм</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','education')"><span class="quiz-opt-icon">📚</span>Педагогіка / Освіта</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','engineering')"><span class="quiz-opt-icon">⚙️</span>Інженерія / Будівництво</div>
+          <div class="quiz-opt" onclick="pick(this,'faculty','notsure')"><span class="quiz-opt-icon">🤔</span>Ще не визначився</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(5)">← Назад</button><span class="quiz-step-label">5 / 8</span><button class="quiz-next" onclick="next(5)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 6: goal -->
+      <div class="quiz-screen" id="qs-6">
+        <div class="quiz-q">Яка ваша мета навчання?</div>
+        <div class="quiz-hint">Це допоможе підібрати рівень і тривалість програми</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'goal','career_change')"><span class="quiz-opt-icon">🔄</span>Зміна сфери діяльності</div>
+          <div class="quiz-opt" onclick="pick(this,'goal','promotion')"><span class="quiz-opt-icon">📈</span>Підвищення на поточному місці роботи</div>
+          <div class="quiz-opt" onclick="pick(this,'goal','diploma')"><span class="quiz-opt-icon">📜</span>Отримати британський диплом</div>
+          <div class="quiz-opt" onclick="pick(this,'goal','language')"><span class="quiz-opt-icon">🗣️</span>Покращити англійську + отримати диплом</div>
+          <div class="quiz-opt" onclick="pick(this,'goal','student_life')"><span class="quiz-opt-icon">🎓</span>Повноцінне студентське життя</div>
+          <div class="quiz-opt" onclick="pick(this,'goal','sf_benefits')"><span class="quiz-opt-icon">💷</span>Скористатись Student Finance</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(6)">← Назад</button><span class="quiz-step-label">6 / 8</span><button class="quiz-next" onclick="next(6)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 7: english -->
+      <div class="quiz-screen" id="qs-7">
+        <div class="quiz-q">Яка у вас ситуація з англійською?</div>
+        <div class="quiz-hint">Чесно — це тільки для підбору університету</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'english','ielts')"><span class="quiz-opt-icon">✅</span>Є IELTS або інший сертифікат</div>
+          <div class="quiz-opt" onclick="pick(this,'english','duolingo')"><span class="quiz-opt-icon">🦉</span>Є Duolingo English Test</div>
+          <div class="quiz-opt" onclick="pick(this,'english','gcse')"><span class="quiz-opt-icon">🏫</span>Є GCSE English (здана тут у UK)</div>
+          <div class="quiz-opt" onclick="pick(this,'english','notest')"><span class="quiz-opt-icon">📝</span>Немає сертифікату, готовий здати внутрішній тест</div>
+          <div class="quiz-opt" onclick="pick(this,'english','weak')"><span class="quiz-opt-icon">🤷</span>Рівень невисокий, потрібна допомога</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(7)">← Назад</button><span class="quiz-step-label">7 / 8</span><button class="quiz-next" onclick="next(7)" disabled>Далі →</button></div>
+      </div>
+
+      <!-- SCREEN 8: accommodation -->
+      <div class="quiz-screen" id="qs-8">
+        <div class="quiz-q">Вам важливий гуртожиток при університеті?</div>
+        <div class="quiz-hint">Деякі університети пропонують accommodation на кампусі</div>
+        <div class="quiz-options">
+          <div class="quiz-opt" onclick="pick(this,'accom','yes')"><span class="quiz-opt-icon">🏠</span>Так, хочу жити у студентському містечку</div>
+          <div class="quiz-opt" onclick="pick(this,'accom','nice')"><span class="quiz-opt-icon">👍</span>Було б добре, але не обов'язково</div>
+          <div class="quiz-opt" onclick="pick(this,'accom','no')"><span class="quiz-opt-icon">🏡</span>Ні, вже є де жити</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="back(8)">← Назад</button><span class="quiz-step-label">8 / 8</span><button class="quiz-next" id="btn-result" onclick="showResult()" disabled>Показати результат →</button></div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="quiz-screen" id="qs-result">
+        <div class="quiz-result">
+          <div class="result-icon">🎓</div>
+          <div class="result-title" id="result-title">Ми підібрали варіанти для вас!</div>
+          <div class="result-sub" id="result-sub">На основі ваших відповідей ми бачимо підходящі університети. Напишіть нам у WhatsApp — надішлемо детальний підбір з умовами і термінами вступу.</div>
+          <div class="result-tags" id="result-tags"></div>
+          <div class="result-wa">
+            <a id="wa-link" href="#" target="_blank" class="btn-wa">💬 Надіслати результат у WhatsApp →</a>
+            <button class="btn-restart" onclick="restartQuiz()">↺ Пройти ще раз</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /quiz-body -->
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="divider" id="faq"><span>Часті питання</span></div>
+<section>
+  <div class="faq">
+    <details>
+      <summary>Чи є ця послуга безкоштовною?</summary>
+      <div class="faq-body">Так, допомога з підбором університету та подачею документів — повністю безкоштовна для вас. Ми є акредитованим освітнім агентством і надаємо ці послуги в рамках нашого партнерства з університетами.</div>
+    </details>
+    <details>
+      <summary>Чи можна вступити без диплому — тільки з атестатом?</summary>
+      <div class="faq-body">Так. Більшість університетів приймають на Foundation Year зі шкільним атестатом. Якщо вам більше 21 і є досвід роботи — є варіанти навіть без диплому. <strong>LCCA — єдиний університет, що бере до 21 без диплому</strong> (тільки досвід роботи + рекомендація).</div>
+    </details>
+    <details>
+      <summary>Що таке Student Finance і хто має право?</summary>
+      <div class="faq-body">Державна позика на навчання (до £9,250/рік) та проживання (до £13,000+/рік). Українці за схемою Homes for Ukraine мають право нарівні з місцевими студентами — і на бакалаврат, і на магістратуру. Повертати починаєте після £25,000+/рік доходу.</div>
+    </details>
+    <details>
+      <summary>Чи можна вчитися і працювати одночасно?</summary>
+      <div class="faq-body">Так. Більшість партнерських університетів пропонують вечірні (2 вечори на тиждень) або вихідні формати. Спеціально для тих, хто вже працює.</div>
+    </details>
+    <details>
+      <summary>Чи потрібна нострифікація українського диплому?</summary>
+      <div class="faq-body">У більшості випадків — ні. Достатньо перекладу в будь-якому перекладацькому бюро. Апостиль та нотаріальне завірення не потрібні.</div>
+    </details>
+    <details>
+      <summary>Які документи потрібні для вступу?</summary>
+      <div class="faq-body">Базовий пакет: паспорт, BRP або share code, підтвердження адреси, диплом або атестат з перекладом, CV та Personal Statement. Для деяких університетів — рекомендація від роботодавця. Допоможемо підготувати все необхідне.</div>
+    </details>
+    <details>
+      <summary>Що якщо рівень англійської невисокий?</summary>
+      <div class="faq-body">Більшість партнерських університетів мають власний безкоштовний тест. Деякі приймають Duolingo (від 85 балів) або оцінку з атестату. IELTS потрібен не завжди — розберемось разом.</div>
+    </details>
+    <details>
+      <summary>Скільки часу займає вступ?</summary>
+      <div class="faq-body">Від консультації до офферу — зазвичай 2–6 тижнів. Student Finance розглядається до 6 тижнів. Деякі університети мають кілька наборів на рік: вересень, січень, травень.</div>
+    </details>
+    <details>
+      <summary>У якому місті можна навчатись?</summary>
+      <div class="faq-body">Лондон, Манчестер, Бірмінгем — найбільший вибір. Також є варіанти в Лідсі, Лестері, Брадфорді, Портсмуті, Плімуті та інших містах.</div>
+    </details>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <p class="cta-eyebrow">✦ Почати зараз</p>
+    <h2>Дізнайтесь, який університет підходить саме вам</h2>
+    <p>30 хвилин · Безкоштовно · Онлайн · Без тиску</p>
+    <div class="btn-group">
+      <a href="https://wa.me/380683521151" target="_blank" class="btn btn-primary">Написати у WhatsApp →</a>
+      <a href="https://instagram.com/iren_lutsenko_career" target="_blank" class="btn btn-outline">Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Pro Education UK</span>
+  <div class="footer-links">
+    <a href="https://irenlutsen.github.io/Career-couch/" target="_blank">Коучинг</a>
+    <a href="https://wa.me/380683521151" target="_blank">WhatsApp</a>
+    <a href="mailto:irenlutsen@gmail.com">Email</a>
+    <a href="https://instagram.com/iren_lutsenko_career" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+<script>
+// ── QUIZ STATE ──
+const TOTAL = 8;
+let answers = {};
+let current = 1;
+
+// Build progress bar
+(function(){
+  const bar = document.getElementById('quiz-progress');
+  for(let i=1;i<=TOTAL;i++){
+    const d=document.createElement('div');
+    d.className='quiz-prog-step'+(i===1?' active':'');
+    d.id='prog-'+i;
+    bar.appendChild(d);
+  }
+})();
+
+function updateProgress(step){
+  for(let i=1;i<=TOTAL;i++){
+    const el=document.getElementById('prog-'+i);
+    if(!el) continue;
+    el.className='quiz-prog-step'+(i<step?'done':i===step?' active':'');
+  }
+}
+
+function pick(el, key, val){
+  // deselect siblings
+  el.closest('.quiz-options,.quiz-grid').querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[key]=val;
+  // enable next button on this screen
+  const screen=el.closest('.quiz-screen');
+  const btn=screen.querySelector('.quiz-next');
+  if(btn) btn.disabled=false;
+}
+
+function next(step){
+  document.getElementById('qs-'+step).classList.remove('active');
+  const nextStep=step+1;
+  document.getElementById('qs-'+nextStep).classList.add('active');
+  current=nextStep;
+  updateProgress(nextStep);
+  document.getElementById('quiz-section').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function back(step){
+  document.getElementById('qs-'+step).classList.remove('active');
+  const prev=step-1;
+  document.getElementById('qs-'+prev).classList.add('active');
+  current=prev;
+  updateProgress(prev);
+}
+
+function scrollToQuiz(){
+  document.getElementById('quiz-anchor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── RESULT LOGIC ──
+const FACULTY_UA = {
+  business:'Бізнес / Менеджмент', finance:'Фінанси / Бухоблік', it:'IT / Комп\'ютерні науки',
+  health:'Охорона здоров\'я', law:'Право', psychology:'Психологія',
+  marketing:'Маркетинг', design:'Дизайн', hospitality:'Готельний бізнес / Туризм',
+  education:'Педагогіка', engineering:'Інженерія', notsure:'Напрям уточнити'
+};
+const CITY_UA = {london:'Лондон',manchester:'Манчестер',birmingham:'Бірмінгем',other_uk:'Інше місто UK',relocate:'Готовий переїхати',ukraine:'Ще в Україні'};
+const SCHED_UA = {evening:'Вечірній',weekend:'Вихідні',daytime:'Денний',fulltime:'Повний день',any:'Будь-який'};
+const ENG_UA = {ielts:'IELTS є',duolingo:'Duolingo є',gcse:'GCSE є',notest:'Внутрішній тест',weak:'Потрібна допомога'};
+const GOAL_UA = {career_change:'Зміна сфери',promotion:'Кар\'єрне зростання',diploma:'Британський диплом',language:'Диплом + англійська',student_life:'Студентське життя',sf_benefits:'Student Finance'};
+const AGE_UA = {under21:'До 21',  '21-30':'21–30 років','30plus':'30+'};
+const ACCOM_UA = {yes:'Гуртожиток потрібен',nice:'Гуртожиток бажаний',no:'Маю де жити'};
+
+function getUniRec(){
+  const a=answers;
+  // simple recommendation logic
+  if(a.edu==='none' && a.age==='under21') return 'LCCA London College of Contemporary Arts';
+  if(a.faculty==='health') return 'University of Roehampton / University of Plymouth (Navitas)';
+  if(a.faculty==='it') return 'Northumbria University London / BCU (QA)';
+  if(a.faculty==='law') return 'Anglia Ruskin University London / University of Greenwich';
+  if(a.schedule==='fulltime' || a.accom==='yes') return 'Navitas (Hertfordshire, Brunel, Plymouth)';
+  if(a.schedule==='evening' || a.schedule==='weekend') return 'QA Higher Education (London Met, Solent, Ulster, Arden)';
+  if(a.edu==='none') return 'ICON College London / CECOS College';
+  return 'QA Higher Education / Arden University';
+}
+
+function showResult(){
+  // hide last screen
+  document.getElementById('qs-8').classList.remove('active');
+  document.getElementById('qs-result').classList.add('active');
+  updateProgress(TOTAL+1);
+
+  // Build tags
+  const tags=document.getElementById('result-tags');
+  tags.innerHTML='';
+  const items=[
+    AGE_UA[answers.age],
+    CITY_UA[answers.city],
+    FACULTY_UA[answers.faculty],
+    SCHED_UA[answers.schedule],
+    GOAL_UA[answers.goal],
+    ENG_UA[answers.english],
+    ACCOM_UA[answers.accom]
+  ].filter(Boolean);
+  items.forEach(t=>{const s=document.createElement('span');s.className='result-tag';s.textContent=t;tags.appendChild(s);});
+
+  // WhatsApp message
+  const rec=getUniRec();
+  const msg=`Привіт! Я пройшла квіз на сайті і хочу дізнатись про вступ до університету 🎓
+
+📋 Мої відповіді:
+• Вік: ${AGE_UA[answers.age]||'—'}
+• Освіта: ${answers.edu||'—'}
+• Місто: ${CITY_UA[answers.city]||'—'}
+• Формат: ${SCHED_UA[answers.schedule]||'—'}
+• Напрям: ${FACULTY_UA[answers.faculty]||'—'}
+• Мета: ${GOAL_UA[answers.goal]||'—'}
+• Англійська: ${ENG_UA[answers.english]||'—'}
+• Гуртожиток: ${ACCOM_UA[answers.accom]||'—'}
+
+Рекомендація сайту: ${rec}
+
+Можете надіслати детальну інформацію?`;
+
+  document.getElementById('wa-link').href='https://wa.me/380683521151?text='+encodeURIComponent(msg);
+  document.getElementById('result-title').textContent='Ми підібрали варіанти для вас!';
+  document.getElementById('result-sub').textContent=`На основі ваших відповідей бачимо підходящі програми у напрямі "${FACULTY_UA[answers.faculty]||'вашої сфери'}". Натисніть кнопку — ваш запит автоматично надійде нам у WhatsApp з усіма деталями.`;
+}
+
+function restartQuiz(){
+  answers={};
+  current=1;
+  document.querySelectorAll('.quiz-screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('qs-1').classList.add('active');
+  document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));
+  document.querySelectorAll('.quiz-next').forEach(b=>b.disabled=true);
+  updateProgress(1);
+}
+</script>
+</body>
+</html>
