@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Освіта у Великобританії · Iryna Lutsenko</title>
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --bg2: #161616;
+      --bg3: #1e1e1e;
+      --line: rgba(255,255,255,0.08);
+      --muted: rgba(255,255,255,0.38);
+      --mid: rgba(255,255,255,0.62);
+      --text: rgba(255,255,255,0.92);
+      --accent: #c8b89a;
+      --accent2: #9fb8a0;
+      --radius: 14px;
+      --font: 'Georgia', serif;
+      --mono: 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2rem;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 99;
+    }
+    .nav-name {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 1.6rem; }
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 2rem 4rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.22;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 520px;
+      margin: 0 auto 2.4rem;
+    }
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.4rem;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      color: var(--accent2);
+      border: 1px solid rgba(159,184,160,0.28);
+      padding: 0.28rem 0.85rem;
+      border-radius: 40px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 720px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+    .divider span { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--muted); text-transform: uppercase; white-space: nowrap; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+    /* ── SECTIONS ── */
+    section { max-width: 720px; margin: 0 auto; padding: 0 2rem 4rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── FOR WHO ── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .who-card {
+      background: var(--bg2);
+      padding: 1.5rem;
+    }
+    .who-icon { font-size: 1.3rem; margin-bottom: 0.7rem; }
+    .who-title { font-size: 0.95rem; font-weight: 400; color: var(--text); margin-bottom: 0.4rem; }
+    .who-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── STEPS / PROCESS ── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex;
+      gap: 1.4rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: flex-start;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      min-width: 28px;
+      padding-top: 0.22rem;
+    }
+    .step-body {}
+    .step-title { font-size: 1rem; color: var(--text); margin-bottom: 0.3rem; }
+    .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── WHAT YOU GET ── */
+    .get-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .get-list li {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: var(--mid);
+    }
+    .get-list li::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: 0.6rem;
+      margin-top: 0.42rem;
+      flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq { display: flex; flex-direction: column; gap: 0; }
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 0;
+    }
+    details:first-child { border-top: 1px solid var(--line); }
+    summary {
+      cursor: pointer;
+      padding: 1.15rem 0;
+      font-size: 0.95rem;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: '+';
+      font-size: 1.1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      font-family: var(--mono);
+      font-weight: 300;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-body {
+      padding: 0 0 1.2rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .faq-body strong { color: var(--mid); font-weight: 400; }
+
+    /* ── UNI TYPES ── */
+    .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .uni-card {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      transition: border-color 0.2s;
+    }
+    .uni-card:hover { border-color: rgba(200,184,154,0.3); }
+    .uni-tag {
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .uni-title { font-size: 0.95rem; color: var(--text); margin-bottom: 0.4rem; }
+    .uni-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── SF BLOCK ── */
+    .sf-box {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    .sf-box h3 {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .sf-box p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+    .sf-numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sf-num {
+      background: var(--bg3);
+      padding: 1.1rem;
+      text-align: center;
+    }
+    .sf-num-val {
+      font-size: 1.6rem;
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .sf-num-label {
+      font-size: 0.74rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .cta-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-bottom: 1.2rem;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+      line-height: 1.3;
+    }
+    .cta-section p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .btn-group { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.82; transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #0e0e0e;
+      border: none;
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--mid);
+      border: 1px solid var(--line);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    footer span { font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+    .footer-links { display: flex; gap: 1.4rem; }
+    .footer-links a { font-size: 0.78rem; color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      nav { padding: 1.1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3.5rem 1.2rem 3rem; }
+      section { padding: 0 1.2rem 3rem; }
+      .cta-section { padding: 3rem 1.2rem 4rem; }
+      footer { padding: 1.4rem 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-name">Iryna Lutsenko</a>
+  <div class="nav-links">
+    <a href="index.html">Коучинг</a>
+    <a href="uk-education.html" class="active">Освіта UK</a>
+    <a href="https://wa.me/380683521151" target="_blank">Контакт</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">✦ Нова послуга</p>
+  <h1>Вступ до університету<br>у <em>Великобританії</em></h1>
+  <p class="hero-sub">Безкоштовна допомога від підбору університету до зарахування. Спеціально для українців за схемою Homes for Ukraine.</p>
+  <div class="badge-row">
+    <span class="badge">Безкоштовно для вас</span>
+    <span class="badge">Student Finance доступний</span>
+    <span class="badge">Лондон · Манчестер · Бірмінгем</span>
+  </div>
+  <div class="btn-group">
+    <a href="https://wa.me/380683521151" target="_blank" class="btn btn-primary">Безкоштовна консультація →</a>
+    <a href="#faq" class="btn btn-outline">Часті питання</a>
+  </div>
+</div>
+
+<div class="divider"><span>Для кого</span></div>
+
+<!-- FOR WHO -->
+<section>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-icon">🇺🇦</div>
+      <div class="who-title">Українці в UK</div>
+      <div class="who-desc">За схемою Homes for Ukraine — маєте право навчатись як місцеві студенти та отримати Student Finance.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">💼</div>
+      <div class="who-title">Ті, хто працює</div>
+      <div class="who-desc">Є вечірні, денні та вихідні формати навчання — можна поєднувати з роботою.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">📄</div>
+      <div class="who-title">З різними документами</div>
+      <div class="who-desc">Атестат, диплом бакалавра або тільки досвід роботи — для кожної ситуації є варіант.</div>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">🎯</div>
+      <div class="who-title">З будь-якою метою</div>
+      <div class="who-desc">Кар'єрна зміна, підвищення кваліфікації, новий старт — допоможу знайти напрям і підходящий університет.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>Як це працює</span></div>
+
+<!-- PROCESS -->
+<section>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-body">
+        <div class="step-title">Безкоштовна консультація — 30 хвилин</div>
+        <div class="step-desc">Розповідаєте про свою ситуацію: вік, освіта, досвід роботи, місто, зайнятість. Разом визначаємо напрям і реальні варіанти вступу.</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-body">
+        <div class="step-title">Підбір університету</div>
+        <div class="step-desc">Пропоную 2–3 варіанти під вашу ситуацію — з урахуванням міста, формату, рейтингу, вимог до документів та наявності Student Finance.</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-body">
+        <div class="step-title">Допомога з документами</div>
+        <div class="step-desc">Разом готуємо Personal Statement, CV, переклад документів. Підготовка до інтерв'ю з університетом.</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-body">
+        <div class="step-title">Подача заявки</div>
+        <div class="step-desc">Подаю заявку через портал партнера. Відстежую статус, комунікую з університетом від вашого імені.</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">05</span>
+      <div class="step-body">
+        <div class="step-title">Offer і Student Finance</div>
+        <div class="step-desc">Після отримання офферу допомагаю підтвердити вступ і подати заявку на студентське фінансування. Ви починаєте навчання.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>Що отримуєте</span></div>
+
+<!-- WHAT YOU GET -->
+<section>
+  <ul class="get-list">
+    <li>Підбір університету і програми під вашу ситуацію — безкоштовно</li>
+    <li>Допомога з документами: переклад, Personal Statement, CV</li>
+    <li>Підготовка до інтерв'ю з приймальною комісією</li>
+    <li>Подача заявки через офіційний портал агенції</li>
+    <li>Консультація щодо Student Finance — хто має право і як подавати</li>
+    <li>Підтримка від першого дзвінка до зарахування</li>
+    <li>Зв'язок зі мною через WhatsApp — швидко і по-людськи</li>
+  </ul>
+</section>
+
+<div class="divider"><span>Типи університетів</span></div>
+
+<!-- UNI TYPES -->
+<section>
+  <div class="uni-grid">
+    <div class="uni-card">
+      <div class="uni-tag">Гнучкий графік</div>
+      <div class="uni-title">Вечірні та вихідні</div>
+      <div class="uni-desc">QA Higher Education: London Metropolitan, Solent, Ulster, Arden. Ідеально для тих, хто працює.</div>
+    </div>
+    <div class="uni-card">
+      <div class="uni-tag">Легкий вступ</div>
+      <div class="uni-title">Для складних кейсів</div>
+      <div class="uni-desc">ICON College, LCCA, CECOS — менше вимог до документів, внутрішній тест з англійської.</div>
+    </div>
+    <div class="uni-card">
+      <div class="uni-tag">Повноцінний campus</div>
+      <div class="uni-title">Університети з гуртожитком</div>
+      <div class="uni-desc">Navitas & Oxford International: Hertfordshire, Brunel, Plymouth, Greenwich, Bradford та інші.</div>
+    </div>
+    <div class="uni-card">
+      <div class="uni-tag">Медицина</div>
+      <div class="uni-title">Медсестри та health</div>
+      <div class="uni-desc">University of Roehampton, Plymouth, Portsmouth, Sunderland — nursing та health programs.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>Student Finance</span></div>
+
+<!-- STUDENT FINANCE -->
+<section>
+  <div class="sf-box">
+    <h3>Держава оплачує ваше навчання</h3>
+    <p>Українці за схемою Homes for Ukraine мають право на Student Finance — державну позику нарівні з місцевими студентами. Позику не потрібно повертати одразу: виплати починаються лише після того, як ваш дохід перевищить певний поріг.</p>
+    <div class="sf-numbers">
+      <div class="sf-num">
+        <div class="sf-num-val">£9,250</div>
+        <div class="sf-num-label">оплата навчання на рік</div>
+      </div>
+      <div class="sf-num">
+        <div class="sf-num-val">£13k+</div>
+        <div class="sf-num-label">на проживання на рік</div>
+      </div>
+      <div class="sf-num">
+        <div class="sf-num-val">£0</div>
+        <div class="sf-num-label">для вас сьогодні</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" id="faq"><span>Часті питання</span></div>
+
+<!-- FAQ -->
+<section>
+  <div class="faq">
+
+    <details>
+      <summary>Чи є ця послуга безкоштовною для мене?</summary>
+      <div class="faq-body">Так, повністю безкоштовною. Університет виплачує агенції комісію після вашого зарахування. Ви не платите нічого зайвого понад стандартну вартість навчання, яка покривається Student Finance.</div>
+    </details>
+
+    <details>
+      <summary>Чи можу я вступити, якщо у мене немає диплому — тільки атестат?</summary>
+      <div class="faq-body">Так. Більшість університетів приймають на Foundation Year (підготовчий рік) зі шкільним атестатом. Якщо вам більше 21 і є досвід роботи — є варіанти навіть без диплому. <strong>LCCA — єдиний університет, що бере до 21 без диплому</strong>, тільки за досвідом роботи.</div>
+    </details>
+
+    <details>
+      <summary>Що таке Student Finance і хто має право?</summary>
+      <div class="faq-body">Student Finance — це державна позика на навчання (до £9,250/рік) та проживання (до £13,000+/рік). Українці за схемою Homes for Ukraine мають право нарівні з місцевими студентами. Повертати починаєте лише після того, як ваш дохід перевищить певний поріг (зараз £25,000+/рік).</div>
+    </details>
+
+    <details>
+      <summary>Чи можна вчитися і працювати одночасно?</summary>
+      <div class="faq-body">Так. Більшість партнерських університетів пропонують вечірні (2 вечори на тиждень) або вихідні формати навчання. Це спеціально створено для людей, які вже працюють.</div>
+    </details>
+
+    <details>
+      <summary>Чи потрібна нострифікація українського диплому?</summary>
+      <div class="faq-body">У більшості випадків — ні. Університети самостійно оцінюють ваші документи. Достатньо перекладу диплому або атестату в будь-якому перекладацькому бюро. Апостиль та нотаріальне завірення не потрібні.</div>
+    </details>
+
+    <details>
+      <summary>Які документи потрібні для вступу?</summary>
+      <div class="faq-body">Базовий пакет: паспорт, BRP або share code, підтвердження адреси, диплом або атестат з перекладом, CV та особиста заява (Personal Statement). Для деяких університетів — рекомендація від роботодавця. Я допоможу підготувати все необхідне.</div>
+    </details>
+
+    <details>
+      <summary>Що якщо мій рівень англійської невисокий?</summary>
+      <div class="faq-body">Більшість партнерських університетів мають власний безкоштовний тест з англійської. Деякі приймають Duolingo (від 85 балів) або оцінку з атестату. IELTS потрібен не завжди — з'ясуємо разом.</div>
+    </details>
+
+    <details>
+      <summary>Скільки часу займає весь процес вступу?</summary>
+      <div class="faq-body">Від першої консультації до отримання офферу — зазвичай 2–6 тижнів залежно від університету і повноти документів. Student Finance розглядається до 6 тижнів. Деякі університети мають кілька наборів на рік (вересень, січень, травень).</div>
+    </details>
+
+    <details>
+      <summary>У якому місті можна навчатись?</summary>
+      <div class="faq-body">Лондон, Манчестер, Бірмінгем — найбільший вибір програм. Також є варіанти в Лідсі, Лестері, Брадфорді, Портсмуті, Плімуті та інших містах залежно від напряму навчання.</div>
+    </details>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <p class="cta-eyebrow">✦ Почати зараз</p>
+  <h2>Готові дізнатись,<br>який університет підходить саме вам?</h2>
+  <p>30 хвилин · Безкоштовно · Онлайн · Без тиску</p>
+  <div class="btn-group">
+    <a href="https://wa.me/380683521151" target="_blank" class="btn btn-primary">Написати у WhatsApp →</a>
+    <a href="https://instagram.com/iren_lutsenko_career" target="_blank" class="btn btn-outline">Instagram</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Iryna Lutsenko</span>
+  <div class="footer-links">
+    <a href="index.html">Коучинг</a>
+    <a href="https://wa.me/380683521151" target="_blank">WhatsApp</a>
+    <a href="mailto:irenlutsen@gmail.com">Email</a>
+    <a href="https://instagram.com/iren_lutsenko_career" target="_blank">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>
